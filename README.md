@@ -14,7 +14,7 @@ note-taking workflow.  The only issue is that it is only available on macOS,
 which has started to factor heavily into my decision-making when it comes to
 buying a new computer ("HOW WILL I ACCESS MY NOTES?!?!  HOW WILL I EVEN _TAKE_
 NOTES?!?!").  As Vim is my text editor of choice, I started to look for a way to
-add the functionality.  Eventually I came across the awesome
+add nvALT's functionality.  Eventually I came across the awesome
 [notational-fzf-vim](https://github.com/alok/notational-fzf-vim), which covers
 most of the bases that I use nvALT for.  However, the author made it clear that
 the only functionality that was intended to be covered was searching and
