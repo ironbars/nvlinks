@@ -128,9 +128,6 @@ endfunction
 
 " The link should be the name of a file, so we'll just try to open it in the
 " notes directory.  
-" TODO: Let the file extension be present or not in the link.  Right now, the
-" extension is automatically appended, which could cause undesirable behavior
-" if the extension is already there
 function! nvlinks#open_link(cmd, link, ...)
   let lnk = a:link
   let open_for_search = a:0 > 0 ? a:1 : 0
