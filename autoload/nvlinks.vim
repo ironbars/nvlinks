@@ -145,7 +145,7 @@ function! nvlinks#open_link(cmd, link, ...)
     endif
 
     if match(lnk, '\.'. note_ext . '$') == -1
-      lnk = lnk . note_ext
+      let lnk = lnk . note_ext
     endif
 
     if notes[-1] ==# '/'
