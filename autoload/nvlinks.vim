@@ -144,7 +144,7 @@ function! nvlinks#open_link(cmd, link, ...)
       let note_ext = get(g:, 'nvlinks_note_ext', '.md')
     endif
 
-    if !match(lnk, '\.'. note_ext . '$')
+    if match(lnk, '\.'. note_ext . '$') != -1
       lnk = lnk . note_ext
     endif
 
