@@ -74,11 +74,11 @@ support for descriptions (of the style `[[link text|link desc]])` because I
 didn't need it, but if this plugin somehow becomes somewhat popular and folks
 request it, I guess it would be easy enough to add.
 
-There is a single command defined, `:NVLinksHandleLink`, that will open the link
+There is a single command defined, `:NVLinkHandleLink`, that will open the link
 where the cursor is.  It is simple to bind this:  
 
 ```
-nnoremap <C-CR> :NVLinksHandleLink<CR>
+nnoremap <C-CR> :NVLinkHandleLink<CR>
 ```
 
 There are a few other features (some integration with notational-fzf-vim and
