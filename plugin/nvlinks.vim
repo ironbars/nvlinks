@@ -5,7 +5,7 @@ if exists('g:loaded_nvlinks_plugin')
 endif
 let g:loaded_nvlinks_plugin = 1
 
-let s:notes_dir = nvlinks#check_for_notes_dir()
+let s:notes_dir = nvlinks#CheckForNotesDir()
 
 if s:notes_dir ==# ''
   echoerr 'Please define one of the following: '
