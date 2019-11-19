@@ -1,6 +1,6 @@
 " nvlinks autoload file
 
-function! CheckForNotesDir()
+function! nvlinks#check_for_notes_dir()
   if exists('g:nv_main_directory')
     return g:nv_main_directory
   elseif exists('g:nv_search_paths')
@@ -19,7 +19,7 @@ endfunction
 
 " notational-fzf-vim defines a single command.  check for it to determine if
 " the plugin is installed
-function! IsNVPresent()
+function! nvlinks#is_nv_present()
   if exists(':NV')
     return 1
   endif
@@ -28,27 +28,27 @@ function! IsNVPresent()
 endfunction
 
 
-function! HandleLink()
+function! nvlinks#handle_link()
   let move_cursor_to_new_window = get(g:, 'nvlinks_move_to_new_window', 1)
   let link_text_re ='\[\[\zs[^\\\]]\{-}\ze\]\]' 
-  let lnk = matchstr(MatchstrAtCursor(), link_text_re)
-  let nv_present = IsNVPresent()
+  let lnk = matchstr(nvlinks#matchstr_at_cursor(), link_text_re)
+  let nv_present = nvlinks#is_nv_present()
   let search = get(g:, 'nvlinks_search_first', 0)
 
   if lnk != ''
     " the search settings only matter if notational-fzf-vim is installed
     if nv_present && search
       let search_full_screen = get(g:, 'nvlinks_search_full_screen', 1)
-      let cmd = GetSearchCmd(search_full_screen)
+      let cmd = nvlinks#get_search_cmd(search_full_screen)
     else
       let split = get(g:, 'nvlinks_split_option', 'none')
-      let cmd = GetOpenCmd(split, 0)
+      let cmd = nvlinks#get_open_cmd(split, 0)
     endif
   endif
   
   let current_tab_page = tabpagenr()
 
-  call OpenLink(cmd, lnk, search)
+  call nvlinks#open_link(cmd, lnk, search)
 
   if !move_cursor_to_new_window
     if (split ==# 'hsplit' || split ==# 'vsplit')
@@ -60,7 +60,7 @@ function! HandleLink()
 endfunction
 
 
-function! GetSearchCmd(full_screen)
+function! nvlinks#get_search_cmd(full_screen)
   let cmd = ':NV'
 
   if a:full_screen
@@ -73,7 +73,7 @@ function! GetSearchCmd(full_screen)
 endfunction
 
 
-function! GetEditCmd(split, ...)
+function! nvlinks#get_open_cmd(split, ...)
   let reuse_other_split_window = a:0 >= 1 ? a:1 : 0
   
   if a:split ==# 'hsplit'
@@ -99,7 +99,7 @@ function! GetEditCmd(split, ...)
 endfunction
 
 
-function! MatchstrAtCursor()
+function! nvlinks#matchstr_at_cursor()
   let link_re = '\[\[[^\\\]]\{-}\]\]'
   let col = col('.') - 1
   let line = getline('.')
@@ -131,10 +131,10 @@ endfunction
 " TODO: Let the file extension be present or not in the link.  Right now, the
 " extension is automatically appended, which could cause undesirable behavior
 " if the extension is already there
-function! OpenLink(cmd, link, ...)
+function! nvlinks#open_link(cmd, link, ...)
   let lnk = a:link
   let open_for_search = a:0 > 0 ? a:1 : 0
-  let notes = expand(CheckForNotesDir())
+  let notes = expand(nvlinks#check_for_notes_dir())
   let save_on_transition = get(g:, 'nvlinks_save_on_transition', 1)
   
   if !open_for_search
