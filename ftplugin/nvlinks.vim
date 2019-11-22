@@ -13,3 +13,7 @@ let b:undo_ftplugin = 'setlocal buftype='
 
 " commands
 command! -buffer NVLinksHandleLink call nvlinks#handle_link()
+
+if exists('g:nvlinks_follow_key')
+  execute 'nnoremap <' . g:nvlinks_follow_key . '> :NVLinksHandleLink<CR>'
+endif
