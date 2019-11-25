@@ -44,6 +44,8 @@ function! nvlinks#handle_link()
       let split = get(g:, 'nvlinks_split_option', 'none')
       let cmd = nvlinks#get_open_cmd(split, 0)
     endif
+  else
+    return
   endif
   
   let current_tab_page = tabpagenr()
